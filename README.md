@@ -12,7 +12,7 @@ To create an application that an employee can use to generate a random password 
 https://amiedawn.github.io/friendly-parakeet/
 
 ## Screenshot
-![Screenshot](/assets/images/portfolio-pic.jpg)
+![Screenshot](/friendly-parakeet/password generator pic.PNG)
 
 ## Contribution
 Made with ❤️ by Amie Carroll
