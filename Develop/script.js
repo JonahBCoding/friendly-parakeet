@@ -11,8 +11,9 @@ var generateBtn = document.querySelector("#generate");
 
 // Print password in box
 function generatePassword() {
-//debugger;
-    //************* warning box to reload ************ */
+debugger;
+
+  //************* warning box to reload ************ */
   var warningBox = window.confirm("If you do not see 'Your Secure Password' inside the dotted box, \nplease refresh your Internet browser window for best results.");
   
   // ASK SET OF QUESTIONS FOR PASSWORD CRITERIA
@@ -32,7 +33,7 @@ function generatePassword() {
     var arrUppercase = [];
   }
   else {
-  var arrUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var arrUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   };
 
   //************ number array ******************* */
@@ -41,7 +42,7 @@ function generatePassword() {
     var arrNumber = [];
   }
   else {
-  var arrNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var arrNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   };
 
   //************ special array ******************* */
@@ -50,13 +51,14 @@ function generatePassword() {
     var arrSpecial = [];
   }
   else {
-  var arrSpecial = ["~", "!", "#", "$", "%", "^", "&", "*", "+", "=", "-", "?"];
+    var arrSpecial = ["~", "!", "#", "$", "%", "^", "&", "*", "+", "=", "-", "?"];
   };
 
   //************ require user to choose at least one criteria for the password **********/
   if (yesLowercase === false && yesUppercase === false && yesNumber === false && yesSpecial === false) {
     window.confirm("Please try again. You must choose at least 1 character type to include in the password.");
     generatePassword();
+    return;
   }
   
   // debugger;
@@ -120,27 +122,27 @@ function generatePassword() {
     passwordText = passwordText + arrSpecial[specialIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }
-
+  
+  // loop to get to 4 characters in the first 4 slots of the password
+  for (var x = passwordText.length; x < 4; x = x + 1) {
+    var firstFourIndex = Math.floor(Math.random() * passwordArrAll.length);
+    passwordText = passwordText + passwordArrAll[firstFourIndex];
+  }
   //************end collect all possible characters to include in password***** */
-debugger;
+
   // loop to get the right number of characters to match the desired length
   for (var i = (password.length + 4); i <= (chosenLength - 1); i = i + 1) {
     var passwordIndex = Math.floor(Math.random() * passwordArrAll.length);
     passwordText = passwordText + passwordArrAll[passwordIndex];
-
-  // add additional characters if necessary
-  // if (passwordText.length < chosenLength) {
-  //   extraIndex = (chosenLength - passwordText.length);
-  //   while (i < extraIndex) {
-  //     passwordIndex = Math.floor(Math.random() * passwordArrAll.length);
-  //     passwordText = passwordText + passwordArrAll[passwordIndex];
-  //     i++;
-  //   }   
-  // }
-}
+  }
+  // confirm the passwordText is correct format and length
   console.log('passwordText', passwordText, typeof passwordText);
+
   // display the assembled password to the text box
   passwordTextEL.value = passwordText;
-};
 
+};  
+
+
+// call the function to invoke button click
 generateBtn.addEventListener("click", writePassword);
