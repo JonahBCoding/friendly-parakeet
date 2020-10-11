@@ -1,16 +1,9 @@
-// Assignment code here
-
-
 //debugger;
-// Write password to the #password input
-//var password = generatePassword();
-var passwordTextEL = document.querySelector("#password");
+var passwordTextEL = document.querySelector("#password"); // element that gets printed in the text box
 
 function writePassword() {
-
   // go to prompts to see what criteria they want
   generatePassword();
-
 };
 
 // Get references to the #generate element
@@ -19,16 +12,19 @@ var generateBtn = document.querySelector("#generate");
 // Print password in box
 function generatePassword() {
 //debugger;
-  //************* warning box to reload ************ */
+    //************* warning box to reload ************ */
   var warningBox = window.confirm("If you do not see 'Your Secure Password' inside the dotted box, \nplease refresh your Internet browser window for best results.");
+  
+  // ASK SET OF QUESTIONS FOR PASSWORD CRITERIA
   //************ lowercase array ******************* */
   var yesLowercase = window.confirm("Would you like to include at least 1 lowercase letter? \nClick 'OK' for yes and 'Cancel' for no.");
+  // keep array empty if user says they don't want any lowercase letters so they don't get added in later
   if (yesLowercase === false) {
     var arrLowercase = [];
   }
   else {
     var arrLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  }
+  };
  
   //************ uppercase array ******************* */
   var yesUppercase = window.confirm("Would you like to include at least 1 uppercase letter? \nClick 'OK' for yes and 'Cancel' for no.");
@@ -37,15 +33,17 @@ function generatePassword() {
   }
   else {
   var arrUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  }
+  };
+
   //************ number array ******************* */
   var yesNumber = window.confirm("Would you like to include at least 1 number? \nClick 'OK' for yes and 'Cancel' for no.");
   if (yesNumber === false) {
-    var arrLowercase = [];
+    var arrNumber = [];
   }
   else {
   var arrNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  }
+  };
+
   //************ special array ******************* */
   var yesSpecial = window.confirm("Would you like to include any special characters? \nClick 'OK' for yes and 'Cancel' for no.");
   if (yesSpecial === false) {
@@ -53,7 +51,9 @@ function generatePassword() {
   }
   else {
   var arrSpecial = ["~", "!", "#", "$", "%", "^", "&", "*", "+", "=", "-", "?"];
-  }
+  };
+
+  //************ require user to choose at least one criteria for the password **********/
   if (yesLowercase === false && yesUppercase === false && yesNumber === false && yesSpecial === false) {
     window.confirm("Please try again. You must choose at least 1 character type to include in the password.");
     generatePassword();
@@ -84,16 +84,17 @@ function generatePassword() {
 //debugger;
   // initialize empty password string and characterset array
   password = "";
-  passwordText = "";
-  var passwordArrAll = [];
+  passwordText = ""; // the assembled string password that will get passed to passwordTextEL
+  var passwordArrAll = [];  // total criteria of the password
+  var extraIndex = [];
 
   //************start collect all possible characters to include in password***** */
   // if user wants lowercase, include it
   if (yesLowercase === true) {
-    passwordArrAll = passwordArrAll.concat(arrLowercase);
-    var lowerIndex = Math.floor(Math.random() * arrLowercase.length);
-    passwordText = passwordText + arrLowercase[lowerIndex];
-    console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
+    passwordArrAll = passwordArrAll.concat(arrLowercase); // add all lowercase letters to total criteria
+    var lowerIndex = Math.floor(Math.random() * arrLowercase.length); // find a random lowercase letter
+    passwordText = passwordText + arrLowercase[lowerIndex]; // make the random lowercase letter part of output
+    console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll); // verify that all lowercase letters have been added
   }
 
   // if user wants uppercase, include and concat it
@@ -119,16 +120,26 @@ function generatePassword() {
     passwordText = passwordText + arrSpecial[specialIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }
-  //************end collect all possible characters to include in password***** */
-  console.log('chosenLength', chosenLength, typeof chosenLength);
 
+  //************end collect all possible characters to include in password***** */
+debugger;
   // loop to get the right number of characters to match the desired length
   for (var i = (password.length + 4); i <= (chosenLength - 1); i = i + 1) {
     var passwordIndex = Math.floor(Math.random() * passwordArrAll.length);
     passwordText = passwordText + passwordArrAll[passwordIndex];
 
-  }
+  // add additional characters if necessary
+  // if (passwordText.length < chosenLength) {
+  //   extraIndex = (chosenLength - passwordText.length);
+  //   while (i < extraIndex) {
+  //     passwordIndex = Math.floor(Math.random() * passwordArrAll.length);
+  //     passwordText = passwordText + passwordArrAll[passwordIndex];
+  //     i++;
+  //   }   
+  // }
+}
   console.log('passwordText', passwordText, typeof passwordText);
+  // display the assembled password to the text box
   passwordTextEL.value = passwordText;
 };
 
