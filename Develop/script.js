@@ -1,11 +1,13 @@
 // Assignment code here
 
 
-
+//debugger;
 // Write password to the #password input
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
+
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+
  
   
   passwordText.value = password;
@@ -40,7 +42,7 @@ function generatePassword() {
   var yesSpecial = window.confirm("Would you like to include any special characters? \nClick 'OK' for yes and 'Cancel for no.");
   var arrSpecial = ["~", "!", "#", "$", "%", "^", "&", "*", "+", "=", "-", "?"];
   var specialChar = arrSpecial[Math.floor(Math.random() * arrSpecial.length)];
-debugger;
+//debugger;
   //*******************start ask length*************** */
   // prompt: choose length of password between 8-128 characters, default 8
   var chosenLength = window.prompt("How many characters would you like in your password?", "8");
@@ -64,7 +66,8 @@ debugger;
   //*************end of ask length******************** */
 
   // initialize empty password string and characterset array
-  password = "";
+  password="";
+  passwordText= "";
   var passwordArrAll = [];
 
   //************start collect all possible characters to include in password***** */
@@ -72,7 +75,7 @@ debugger;
   if (yesLowercase = true) {
     passwordArrAll = passwordArrAll.concat(arrLowercase);
     var lowerIndex = Math.floor(Math.random() * arrLowercase.length);
-    password = password + arrLowercase[lowerIndex];
+    passwordText = passwordText + arrLowercase[lowerIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }
   
@@ -80,7 +83,7 @@ debugger;
   if (yesUppercase = true)  {
     passwordArrAll = passwordArrAll.concat(arrUppercase); 
     var upperIndex = Math.floor(Math.random() * arrUppercase.length);
-    password = password + arrUppercase[upperIndex];
+    passwordText = passwordText + arrUppercase[upperIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }
 
@@ -88,7 +91,7 @@ debugger;
   if (yesNumber = true) {
     passwordArrAll = passwordArrAll.concat(arrNumber);
     var numberIndex = Math.floor(Math.random() * arrNumber.length);
-    password = password + arrNumber[numberIndex];
+    passwordText = passwordText + arrNumber[numberIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }
 
@@ -96,17 +99,19 @@ debugger;
   if (yesSpecial = true) {
     passwordArrAll = passwordArrAll.concat(arrSpecial);
     var specialIndex = Math.floor(Math.random() * arrSpecial.length);
-    password = password + arrSpecial[specialIndex];
+    passwordText = passwordText + arrSpecial[specialIndex];
     console.log('passwordArrAll', passwordArrAll, typeof passwordArrAll);
   }  
   //************end collect all possible characters to include in password***** */
   console.log('chosenLength', chosenLength, typeof chosenLength);
   
   // loop to get the right number of characters to match the desired length
-  for (var i = password.length; i <= (chosenLength - 1); i = i + 1) {
+  for (var i = (password.length + 4); i <= (chosenLength - 1); i = i + 1) {
     var passwordIndex = Math.floor(Math.random() * passwordArrAll.length);
-    password = password + passwordArrAll[passwordIndex];
+    passwordText = passwordText + passwordArrAll[passwordIndex];
+    console.log('passwordText.value', passwordText.value, typeof passwordText.value);
   }
+
 };
  
 generateBtn.addEventListener("click", writePassword);
