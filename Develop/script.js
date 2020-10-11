@@ -11,7 +11,6 @@ var generateBtn = document.querySelector("#generate");
 
 // Print password in box
 function generatePassword() {
-debugger;
 
   //************* warning box to reload ************ */
   var warningBox = window.confirm("If you do not see 'Your Secure Password' inside the dotted box, \nplease refresh your Internet browser window for best results.");
@@ -61,7 +60,6 @@ debugger;
     return;
   }
   
-  // debugger;
   //*******************start ask length*************** */
   // prompt: choose length of password between 8-128 characters, default 8
   var chosenLength = window.prompt("How many characters would you like in your password?", "8");
@@ -83,7 +81,7 @@ debugger;
   // label, # of characters, and variable type shows in log
   console.log('chosenLength', chosenLength, typeof chosenLength);
   //*************end of ask length******************** */
-//debugger;
+
   // initialize empty password string and characterset array
   password = "";
   passwordText = ""; // the assembled string password that will get passed to passwordTextEL
