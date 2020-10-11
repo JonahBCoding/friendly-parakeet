@@ -59,7 +59,7 @@ function generatePassword() {
   
   //*******************start ask length*************** */
   // prompt: choose length of password between 8-128 characters, default 8
-  var chosenLength = window.prompt("How many characters would you like in your password?", "8");
+  var chosenLength = window.prompt("How many characters would you like in your password? \nPlease choose between 8-128.", "8");
   // convert string to number, base 10
   chosenLength = Number.parseInt(chosenLength, 10);
 
