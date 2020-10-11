@@ -12,9 +12,6 @@ var generateBtn = document.querySelector("#generate");
 // Print password in box
 function generatePassword() {
 
-  //************* warning box to reload ************ */
-  var warningBox = window.confirm("If you do not see 'Your Secure Password' inside the dotted box, \nplease refresh your Internet browser window for best results.");
-  
   // ASK SET OF QUESTIONS FOR PASSWORD CRITERIA
   //************ lowercase array ******************* */
   var yesLowercase = window.confirm("Would you like to include at least 1 lowercase letter? \nClick 'OK' for yes and 'Cancel' for no.");
