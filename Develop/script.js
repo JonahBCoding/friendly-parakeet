@@ -18,26 +18,47 @@ var generateBtn = document.querySelector("#generate");
 
 // Print password in box
 function generatePassword() {
-
+//debugger;
+  //************* warning box to reload ************ */
+  var warningBox = window.confirm("If you do not see 'Your Secure Password' inside the dotted box, \nplease refresh your Internet browser window for best results.");
   //************ lowercase array ******************* */
-  var yesLowercase = window.confirm("Would you like to include at least 1 lowercase letter? \nClick 'OK' for yes and 'Cancel for no.");
-  var arrLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  var lowercaseLetter = arrLowercase[Math.floor(Math.random() * arrLowercase.length)];
-
+  var yesLowercase = window.confirm("Would you like to include at least 1 lowercase letter? \nClick 'OK' for yes and 'Cancel' for no.");
+  if (yesLowercase === false) {
+    var arrLowercase = [];
+  }
+  else {
+    var arrLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  }
+ 
   //************ uppercase array ******************* */
-  var yesUppercase = window.confirm("Would you like to include at least 1 uppercase letter? \nClick 'OK' for yes and 'Cancel for no.");
-  var arrUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "p", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  var uppercaseLetter = arrUppercase[Math.floor(Math.random() * arrUppercase.length)];
-
+  var yesUppercase = window.confirm("Would you like to include at least 1 uppercase letter? \nClick 'OK' for yes and 'Cancel' for no.");
+  if (yesUppercase === false) {
+    var arrUppercase = [];
+  }
+  else {
+  var arrUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  }
   //************ number array ******************* */
-  var yesNumber = window.confirm("Would you like to include at least 1 number? \nClick 'OK' for yes and 'Cancel for no.");
+  var yesNumber = window.confirm("Would you like to include at least 1 number? \nClick 'OK' for yes and 'Cancel' for no.");
+  if (yesNumber === false) {
+    var arrLowercase = [];
+  }
+  else {
   var arrNumber = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  var numberChar = arrNumber[Math.floor(Math.random() * arrNumber.length)];
-
+  }
   //************ special array ******************* */
-  var yesSpecial = window.confirm("Would you like to include any special characters? \nClick 'OK' for yes and 'Cancel for no.");
+  var yesSpecial = window.confirm("Would you like to include any special characters? \nClick 'OK' for yes and 'Cancel' for no.");
+  if (yesSpecial === false) {
+    var arrSpecial = [];
+  }
+  else {
   var arrSpecial = ["~", "!", "#", "$", "%", "^", "&", "*", "+", "=", "-", "?"];
-  var specialChar = arrSpecial[Math.floor(Math.random() * arrSpecial.length)];
+  }
+  if (yesLowercase === false && yesUppercase === false && yesNumber === false && yesSpecial === false) {
+    window.confirm("Please try again. You must choose at least 1 character type to include in the password.");
+    generatePassword();
+  }
+  
   // debugger;
   //*******************start ask length*************** */
   // prompt: choose length of password between 8-128 characters, default 8
@@ -60,7 +81,7 @@ function generatePassword() {
   // label, # of characters, and variable type shows in log
   console.log('chosenLength', chosenLength, typeof chosenLength);
   //*************end of ask length******************** */
-
+//debugger;
   // initialize empty password string and characterset array
   password = "";
   passwordText = "";
@@ -68,7 +89,7 @@ function generatePassword() {
 
   //************start collect all possible characters to include in password***** */
   // if user wants lowercase, include it
-  if (yesLowercase = true) {
+  if (yesLowercase === true) {
     passwordArrAll = passwordArrAll.concat(arrLowercase);
     var lowerIndex = Math.floor(Math.random() * arrLowercase.length);
     passwordText = passwordText + arrLowercase[lowerIndex];
@@ -76,7 +97,7 @@ function generatePassword() {
   }
 
   // if user wants uppercase, include and concat it
-  if (yesUppercase = true) {
+  if (yesUppercase === true) {
     passwordArrAll = passwordArrAll.concat(arrUppercase);
     var upperIndex = Math.floor(Math.random() * arrUppercase.length);
     passwordText = passwordText + arrUppercase[upperIndex];
@@ -84,7 +105,7 @@ function generatePassword() {
   }
 
   // if user wants a number, include and concat it
-  if (yesNumber = true) {
+  if (yesNumber === true) {
     passwordArrAll = passwordArrAll.concat(arrNumber);
     var numberIndex = Math.floor(Math.random() * arrNumber.length);
     passwordText = passwordText + arrNumber[numberIndex];
@@ -92,7 +113,7 @@ function generatePassword() {
   }
 
   // if user wants a special character, include and concat it
-  if (yesSpecial = true) {
+  if (yesSpecial === true) {
     passwordArrAll = passwordArrAll.concat(arrSpecial);
     var specialIndex = Math.floor(Math.random() * arrSpecial.length);
     passwordText = passwordText + arrSpecial[specialIndex];
@@ -112,6 +133,3 @@ function generatePassword() {
 };
 
 generateBtn.addEventListener("click", writePassword);
-
-
-
